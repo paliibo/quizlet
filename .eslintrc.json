@@ -1,0 +1,24 @@
+{
+  "root": true,
+  "plugins": ["unused-imports", "perfectionist"],
+  "extends": ["next", "next/core-web-vitals", "plugin:perfectionist/recommended-natural"],
+  "ignorePatterns": ["node_modules", "dist", "dev-dist", "build", ".history", "next"],
+  "rules": {},
+  "overrides": [
+    {
+      "files": ["*.*"],
+      "rules": {
+        "@next/next/no-html-link-for-pages": "off",
+        "react/display-name": "off"
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    }
+  ]
+}
