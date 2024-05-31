@@ -1,16 +1,16 @@
 import React, { ReactNode } from "react";
 
 type ButtonProps = {
-  action: () => void,
-  children?: ReactNode,
-}
-type Ref = HTMLButtonElement;
-export const Button = React.forwardRef<Ref, ButtonProps>((props, forwardRef) => {
+  action: () => void;
+  children?: ReactNode;
+  className: string;
+};
+export const Button = ({ action, children, className = "" }: ButtonProps) => {
   return (
-    <button onClick={props.action} type={'button'} ref={forwardRef}>
-
+    <button className={className} onClick={action} type={"button"}>
+      {children}
     </button>
   );
-})
+};
 
-Button.displayName = 'Button';
+Button.displayName = "Button";
