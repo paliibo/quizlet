@@ -13,7 +13,7 @@ export const RadioButtons = ({ labels, onAction }: RadioButtons) => {
       {labels.map((label, index) => (
         <div
           className={"flex items-center gap-2 "}
-          key={crypto.randomUUID()}
+          key={index}
           onClick={() => {
             setActive(index);
             onAction(label);
