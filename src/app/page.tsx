@@ -22,8 +22,38 @@ export default function Home() {
   const [isTracking, setTracking] = useState(false);
   useEffect(() => {
     mockApi().then(res => {
-      if (!res) return;
-      setQuiz(res);
+      if (!res) {
+        localStorageUtil("quiz").set([
+          {
+            questions: [
+              {
+                answer: ["Default 1"],
+                options: ["Default 1", "Default 2"],
+                points: 1,
+                title: "Default Question",
+                type: "regular",
+              },
+            ],
+            quizTitle: "DefaultQuiz",
+          },
+        ]);
+        setQuiz([
+          {
+            questions: [
+              {
+                answer: ["Default 1"],
+                options: ["Default 1", "Default 2"],
+                points: 1,
+                title: "Default Question",
+                type: "regular",
+              },
+            ],
+            quizTitle: "DefaultQuiz",
+          },
+        ]);
+      } else {
+        setQuiz(res);
+      }
     });
     setLoading(false);
   }, []);
