@@ -72,7 +72,8 @@ export const Quiz = ({ questionAndAnswers }: { questionAndAnswers: QuestionData[
       }
       if (questionAndAnswers[index].type === "regular") {
         console.log(value);
-        if (value[0] === questionAndAnswers[index].answer[0]) {
+        // @ts-ignore
+        if (value[0] === questionAndAnswers[index].answer[0] || value[0] === questionAndAnswers[index].answer) {
           tempRes.correct += 1;
           tempRes.totalPoints += questionAndAnswers[index].points;
         } else {
