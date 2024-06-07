@@ -1,4 +1,6 @@
+// @ts-nocheck
 "use client";
+import { PreviewContent } from "@/components/quiz/preview-content";
 import { QuizContent } from "@/components/quiz/quiz-content";
 import { Button } from "@/components/ui/button";
 import { FormButton } from "@/components/ui/form";
@@ -6,16 +8,19 @@ import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { QuestionData } from "@/types/types";
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Pie } from "react-chartjs-2";
-import { FormProvider, useFieldArray, useForm, useWatch } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const Quiz = ({ questionAndAnswers }: { questionAndAnswers: QuestionData[] }) => {
   const Ref = useRef<NodeJS.Timer | null>(null);
   const [timer, setTimer] = useState("00:10:00");
   const [activeQuestion, setActiveQuestion] = useState(0);
-  const [finished, setFinished] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
+  const [isPreview, setPreview] = useState(false);
+  const [formData, setFormData] = useState({});
   const [result, setResult] = useState({
     correct: 0,
     totalPoints: 0,
@@ -30,35 +35,42 @@ export const Quiz = ({ questionAndAnswers }: { questionAndAnswers: QuestionData[
   });
   const { control, handleSubmit } = form;
   const handleQuizSubmit = (data: unknown) => {
+    setFormData(data);
     const tempRes = {
       correct: 0,
       totalPoints: 0,
       wrong: 0,
     };
-    console.log(data);
     // @ts-ignore
+    console.log(data);
     data.answers.map((value: string[], index: number) => {
       if (questionAndAnswers[index].type === "multi") {
-        let amountOfCorrectAnswears = questionAndAnswers[index].answer.length;
-        let userCorrectAnswears = 0;
+        let amountOfCorrectAnswers = questionAndAnswers[index].answer.length;
+        let userCorrectAnswers = 0;
         let total = questionAndAnswers[index].points;
-        value.map((value: string, index: number) => {
-          console.log(questionAndAnswers[index].answer[index]);
-          console.log(questionAndAnswers[index].answer);
-          console.log(value);
-          // @ts-ignore
-          if (value === questionAndAnswers[index].answer[index] || value === questionAndAnswers[index].answer) {
-            userCorrectAnswears += 1;
+        if (!Array.isArray(value)) {
+          if (value === questionAndAnswers[index].answer[index]) {
+            userCorrectAnswers += 1;
           }
-        });
-        if (userCorrectAnswears === amountOfCorrectAnswears) {
+        } else {
+          value.map((value: string, index: number) => {
+            console.log(questionAndAnswers[index].answer[index]);
+            console.log(questionAndAnswers[index].answer);
+            console.log(value);
+            // @ts-ignore
+            if (value === questionAndAnswers[index].answer[index] || value === questionAndAnswers[index].answer) {
+              userCorrectAnswers += 1;
+            }
+          });
+        }
+        if (userCorrectAnswers === amountOfCorrectAnswers) {
           tempRes.correct += 1;
           tempRes.totalPoints += questionAndAnswers[index].points;
-        } else if (userCorrectAnswears === 0) {
+        } else if (userCorrectAnswers === 0) {
           tempRes.wrong += 1;
         } else {
           tempRes.correct += 0.5;
-          tempRes.totalPoints += Math.floor((userCorrectAnswears / amountOfCorrectAnswears) * total);
+          tempRes.totalPoints += Math.floor((userCorrectAnswers / amountOfCorrectAnswers) * total);
         }
       }
       if (questionAndAnswers[index].type === "text") {
@@ -82,7 +94,7 @@ export const Quiz = ({ questionAndAnswers }: { questionAndAnswers: QuestionData[
       }
     });
     setResult(tempRes);
-    setFinished(true);
+    setIsFinished(true);
   };
   const getTimeRemaining = (e: Date) => {
     const total = Date.parse(e.toString()) - Date.parse(new Date().toString());
@@ -129,83 +141,151 @@ export const Quiz = ({ questionAndAnswers }: { questionAndAnswers: QuestionData[
   }, []);
 
   useEffect(() => {
-    if (Ref && finished) {
+    if (Ref && isFinished) {
       // @ts-ignore
       clearInterval(Ref.current);
     }
-  }, [finished]);
+  }, [isFinished]);
   if (timer === "00:00:00") {
-    setFinished(true);
+    setIsFinished(true);
   }
   return (
-    <FormProvider {...form}>
-      <form
-        className={"relative mx-auto flex min-h-72 w-1/2 flex-col justify-center gap-4 rounded-lg bg-white p-8"}
-        onSubmit={handleSubmit(handleQuizSubmit)}
-      >
-        <div className={"absolute left-4 top-4 text-indigo-600"}>{timer}</div>
-        <div className={"flex items-center justify-center text-indigo-600"}>
-          <h1 className={"text-4xl"}>Quizbrain</h1>
-        </div>
-
-        <Separator />
-
-        <Progress value={(activeQuestion / (questionAndAnswers.length - 1)) * 100} />
-        <div>
-          {finished ? (
-            <h2 className={"text-2xl"}>Results</h2>
-          ) : (
-            <h2 className={"text-2xl"}>
-              Question {activeQuestion + 1} of {questionAndAnswers.length}:
-            </h2>
-          )}
-        </div>
-        <div className={"w-full flex-1 rounded-md bg-blue-200 "}>
-          {finished ? (
-            <div className={"flex flex-col p-2"}>
-              {finished && (
-                <Pie
-                  data={{
-                    datasets: [
-                      {
-                        backgroundColor: ["rgba(54,235,63,0.2)", "rgba(255, 99, 132, 0.2)"],
-                        data: [result.correct, result.wrong],
-                        label: "# of Votes",
-                      },
-                    ],
-                    labels: ["Correct", "Wrong"],
-                  }}
-                />
-              )}
-              <span>Total Points: {result.totalPoints}</span>
-              <span>Correct Answer: {result.correct}</span>
-              <span>Wrong Answer: {result.wrong}</span>
+    <>
+      {!isPreview ? (
+        <FormProvider {...form}>
+          <form
+            className={
+              "relative mx-auto flex min-h-72 w-1/2 min-w-[30rem] flex-col justify-center gap-4 rounded-lg bg-white p-8"
+            }
+            onSubmit={handleSubmit(handleQuizSubmit)}
+          >
+            <div className={"absolute left-4 top-4 text-indigo-600"}>{timer}</div>
+            <div className={"flex items-center justify-center text-indigo-600"}>
+              <h1 className={"text-4xl"}>Quizbrain</h1>
             </div>
-          ) : (
-            <>
-              {/*@ts-ignore*/}
-              <QuizContent control={control} field={questionAndAnswers[activeQuestion]} fieldIndex={activeQuestion} />
-            </>
-          )}
-        </div>
-        {!finished && (
-          <div className={"flex justify-center p-4"}>
-            {activeQuestion == questionAndAnswers.length - 1 ? (
-              <FormButton className={"rounded-lg bg-[#ef4444] px-4 py-2 text-white"} type={"submit"}>
-                Finish
-              </FormButton>
+
+            <Separator />
+
+            <Progress value={(activeQuestion / (questionAndAnswers.length - 1)) * 100} />
+            <div>
+              {isFinished ? (
+                <h2 className={"text-2xl"}>Results</h2>
+              ) : (
+                <h2 className={"text-2xl"}>
+                  Question {activeQuestion + 1} of {questionAndAnswers.length}:
+                </h2>
+              )}
+            </div>
+            <div className={"flex w-full flex-1 justify-center rounded-md bg-blue-200 "}>
+              {isFinished ? (
+                <div className={"flex flex-col p-2"}>
+                  {isFinished && (
+                    <Pie
+                      data={{
+                        datasets: [
+                          {
+                            backgroundColor: ["rgba(54,235,63,0.2)", "rgba(255, 99, 132, 0.2)"],
+                            data: [result.correct, result.wrong],
+                            label: "# of Votes",
+                          },
+                        ],
+                        labels: ["Correct", "Wrong"],
+                      }}
+                    />
+                  )}
+                  <div className={"m-2 flex justify-between gap-2 rounded-lg bg-cyan-800/40 px-2 py-0.5 text-white"}>
+                    <span>Total Points: {result.totalPoints}</span>
+                    <span>Correct Answer: {result.correct}</span>
+                    <span>Wrong Answer: {result.wrong}</span>
+                  </div>
+
+                  <div className={"flex justify-center gap-2"}>
+                    <Button
+                      className={"bg-blue-600 hover:bg-blue-800"}
+                      onClick={() => {
+                        setActiveQuestion(0);
+                        setIsFinished(false);
+                        setPreview(true);
+                      }}
+                    >
+                      Review
+                    </Button>
+                    <Link href={"/"}>
+                      <Button>To home</Button>
+                    </Link>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  {/*@ts-ignore*/}
+                  <QuizContent
+                    control={control}
+                    field={questionAndAnswers[activeQuestion]}
+                    fieldIndex={activeQuestion}
+                  />
+                </>
+              )}
+            </div>
+            {!isFinished && (
+              <div className={"flex justify-center p-4"}>
+                {activeQuestion == questionAndAnswers.length - 1 ? (
+                  <FormButton className={"rounded-lg bg-[#ef4444] px-4 py-2 text-white"} type={"submit"}>
+                    Finish
+                  </FormButton>
+                ) : (
+                  <Button
+                    className={"rounded-lg bg-[#7c3aed] px-4 py-2 text-white"}
+                    onAction={() => setActiveQuestion(prevState => prevState + 1)}
+                    type={"button"}
+                  >
+                    Next
+                  </Button>
+                )}
+              </div>
+            )}
+          </form>
+        </FormProvider>
+      ) : (
+        <div className={"relative mx-auto flex min-h-72 w-1/2 flex-col justify-center gap-4 rounded-lg bg-white p-8"}>
+          <div className={"flex items-center justify-center text-indigo-600"}>
+            <h1 className={"text-4xl"}>Quizbrain</h1>
+          </div>
+
+          <Separator />
+
+          <Progress value={(activeQuestion / (questionAndAnswers.length - 1)) * 100} />
+          <div>
+            {isFinished ? (
+              <h2 className={"text-2xl"}>Results</h2>
             ) : (
-              <Button
-                className={"rounded-lg bg-[#7c3aed] px-4 py-2 text-white"}
-                onAction={() => setActiveQuestion(prevState => prevState + 1)}
-                type={"button"}
-              >
-                Next
-              </Button>
+              <h2 className={"text-2xl"}>
+                Question {activeQuestion + 1} of {questionAndAnswers.length}:
+              </h2>
             )}
           </div>
-        )}
-      </form>
-    </FormProvider>
+          <div className={"flex w-full flex-1 rounded-md bg-blue-200 "}>
+            {/*@ts-ignore*/}
+            <PreviewContent field={questionAndAnswers[activeQuestion]} fieldIndex={activeQuestion} result={formData} />
+          </div>
+          {!isFinished && (
+            <div className={"flex justify-center p-4"}>
+              {activeQuestion == questionAndAnswers.length - 1 ? (
+                <Link href={"/"}>
+                  <Button>To home</Button>
+                </Link>
+              ) : (
+                <Button
+                  className={"rounded-lg bg-[#7c3aed] px-4 py-2 text-white"}
+                  onAction={() => setActiveQuestion(prevState => prevState + 1)}
+                  type={"button"}
+                >
+                  Next
+                </Button>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+    </>
   );
 };

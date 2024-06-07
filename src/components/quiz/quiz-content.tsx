@@ -9,17 +9,17 @@ export const QuizContent: FC<Omit<QuestionContentProps, "type" | "update">> = ({
     if (!field || !field.options) return;
 
     return (
-      <div>
+      <div className={"flex h-full w-full shrink flex-col p-2"}>
         <div className={"flex h-full w-full items-center rounded-md bg-blue-100 px-4 py-2"}>{field.title}</div>
         <FormToggle
-          containerClassName={"flex p-2 gap-2"}
+          containerClassName={"flex w-full p-2 gap-2"}
           control={control}
           name={`answers.${fieldIndex}`}
           type={"multiple"}
         >
           {field.options.map((option, optionIndex) => {
             return (
-              <ToggleItem className={"flex gap-2"} key={optionIndex} value={option}>
+              <ToggleItem className={"flex w-full gap-2"} key={optionIndex} value={option}>
                 <div className={"bg flex h-full w-full items-center rounded-md bg-white px-4"}>{option}</div>
               </ToggleItem>
             );
@@ -30,7 +30,8 @@ export const QuizContent: FC<Omit<QuestionContentProps, "type" | "update">> = ({
   }
   if (field.type === "text") {
     return (
-      <>
+      <div className={"flex h-full w-full shrink flex-col gap-2 p-2"}>
+        <div className={"flex h-full w-full items-center rounded-md bg-blue-100 px-4 py-2"}>{field.title}</div>
         <FormInput
           control={control}
           defaultValue={"Your answer"}
@@ -38,14 +39,14 @@ export const QuizContent: FC<Omit<QuestionContentProps, "type" | "update">> = ({
           placeholder={"Correct answer"}
           type="text"
         />
-      </>
+      </div>
     );
   }
   return (
-    <div>
+    <div className={"flex h-full w-full shrink flex-col p-2"}>
       <div className={"flex h-full w-full items-center rounded-md bg-blue-100 px-4 py-2"}>{field.title}</div>
       <FormToggle
-        containerClassName={"flex p-2 gap-2"}
+        containerClassName={"flex w-full p-2 gap-2"}
         control={control}
         defaultValue={["0"]}
         name={`answers.${fieldIndex}`}
@@ -53,7 +54,7 @@ export const QuizContent: FC<Omit<QuestionContentProps, "type" | "update">> = ({
       >
         {field.options!.map((option, optionIndex) => {
           return (
-            <ToggleItem className={"flex gap-2"} key={optionIndex} value={option}>
+            <ToggleItem className={"flex w-full gap-2"} key={optionIndex} value={option}>
               <div className={"bg flex h-full w-full items-center rounded-md bg-white px-4"}>{option}</div>
             </ToggleItem>
           );

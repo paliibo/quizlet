@@ -6,7 +6,7 @@ import { twMerge } from "tailwind-merge";
 export const ToggleItem = forwardRef<ElementRef<typeof Item>, ComponentPropsWithoutRef<typeof Item>>(
   ({ children, className, ...props }, forwardedRef) => {
     return (
-      <div className={twMerge("", className)}>
+      <div className={twMerge("w-full", className)}>
         <Item
           className={twMerge(
             `flex h-8 w-8 items-center justify-center gap-2 rounded-lg bg-white p-1 transition-all ease-in-out aria-[checked=true]:bg-purple-600 aria-[pressed=true]:bg-purple-600`,
@@ -14,7 +14,7 @@ export const ToggleItem = forwardRef<ElementRef<typeof Item>, ComponentPropsWith
           ref={forwardedRef}
           {...props}
         ></Item>
-        <div>{children}</div>
+        <div className={"w-full"}>{children}</div>
       </div>
     );
   },
