@@ -4,11 +4,12 @@ import { FormButton, FormInput } from "@/components/ui/form";
 import { Label } from "@/components/ui/label";
 import { QuizData } from "@/types/types";
 import { useRouter } from "next/navigation";
-import { FormProvider, useFieldArray, useForm, useWatch } from "react-hook-form";
+import { memo } from "react";
+import { FieldValues, FormProvider, useFieldArray, useForm, useWatch } from "react-hook-form";
 
-export const CreateQuiz = ({ id, quizFields }: { id?: number; quizFields?: QuizData }) => {
+export const CreateQuiz = memo(({ id, quizFields }: { id?: number; quizFields?: QuizData }) => {
   const router = useRouter();
-  const form = useForm<QuizData>({
+  const form = useForm<FieldValues & QuizData>({
     defaultValues: quizFields
       ? {
           questions: [...quizFields.questions],
@@ -118,4 +119,4 @@ export const CreateQuiz = ({ id, quizFields }: { id?: number; quizFields?: QuizD
       </form>
     </FormProvider>
   );
-};
+});

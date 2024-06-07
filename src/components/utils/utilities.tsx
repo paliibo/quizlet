@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
+import { memo } from "react";
 
-export const Utilities = () => {
+export const Utilities = memo(() => {
   return (
     <div className={"absolute  right-0 top-0 flex gap-2 p-4 text-white"}>
       <Link
@@ -12,4 +13,4 @@ export const Utilities = () => {
       </Link>
     </div>
   );
-};
+});

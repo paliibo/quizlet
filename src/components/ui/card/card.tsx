@@ -1,4 +1,4 @@
-import { ReactNode, forwardRef } from "react";
+import { ReactNode, forwardRef, memo } from "react";
 import { twMerge } from "tailwind-merge";
 
 type ButtonProps = {
@@ -6,14 +6,14 @@ type ButtonProps = {
   className?: string;
   id?: string;
 };
-export const Card = forwardRef<HTMLDivElement, ButtonProps>(
-  ({ children, className = "", id = "", ...props }, forwardRef) => {
+export const Card = memo(
+  forwardRef<HTMLDivElement, ButtonProps>(({ children, className = "", id = "", ...props }, ref) => {
     return (
-      <div className={twMerge("rounded-lg bg-white shadow-2xl", className)} id={id} {...props}>
+      <div className={twMerge("rounded-lg bg-white shadow-2xl", className)} id={id} ref={ref} {...props}>
         {children}
       </div>
     );
-  },
+  }),
 );
 
 Card.displayName = "Card";

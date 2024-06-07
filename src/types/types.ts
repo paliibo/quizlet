@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { Control, UseFieldArrayUpdate } from "react-hook-form";
+import { Control, FieldValues, UseFieldArrayUpdate } from "react-hook-form";
 
 export type QuestionData = {
   answer: string[];
@@ -14,7 +14,7 @@ export type QuizData = {
   quizTitle: string;
 };
 export type QuestionContentProps = {
-  control: Control<QuizData>;
+  control: Control<FieldValues & QuizData>;
   field: QuestionData;
   fieldIndex: number;
   type?: QuestionType;

@@ -1,5 +1,5 @@
 import { Input, InputProps } from "@/components/ui/input/";
-import { ReactElement } from "react";
+import { ReactElement, memo } from "react";
 import { Control, FieldPathByValue, FieldValues, PathValue, useController } from "react-hook-form";
 
 export type FormInputProps<
@@ -11,27 +11,26 @@ export type FormInputProps<
   name: TPath;
 } & Omit<InputProps, "defaultValue" | "onBlur" | "onChange" | "value">;
 
-export const FormInput = <
-  TFieldValues extends FieldValues,
-  TPath extends FieldPathByValue<TFieldValues, boolean | number | string>,
->({
-  control,
-  defaultValue,
-  name,
-  ...props
-}: FormInputProps<TFieldValues, TPath>): ReactElement | null => {
-  const { field, fieldState } = useController({
+export const FormInput = memo(
+  <TFieldValues extends FieldValues, TPath extends FieldPathByValue<TFieldValues, boolean | number | string>>({
     control,
     defaultValue,
     name,
-  });
+    ...props
+  }: FormInputProps<TFieldValues, TPath>): ReactElement | null => {
+    const { field, fieldState } = useController({
+      control,
+      defaultValue,
+      name,
+    });
 
-  return (
-    <Input
-      {...props}
-      {...field}
-      error={fieldState.isTouched && (fieldState.error?.message ?? fieldState.error?.type)}
-    />
-  );
-};
+    return (
+      <Input
+        {...props}
+        {...field}
+        error={fieldState.isTouched && (fieldState.error?.message ?? fieldState.error?.type)}
+      />
+    );
+  },
+);
 FormInput.displayName = "FormInput";

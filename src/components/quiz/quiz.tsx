@@ -9,12 +9,12 @@ import { Separator } from "@/components/ui/separator";
 import { QuestionData } from "@/types/types";
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { Pie } from "react-chartjs-2";
 import { FormProvider, useForm } from "react-hook-form";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const Quiz = ({ questionAndAnswers }: { questionAndAnswers: QuestionData[] }) => {
+export const Quiz = memo(({ questionAndAnswers }: { questionAndAnswers: QuestionData[] }) => {
   const Ref = useRef<NodeJS.Timer | null>(null);
   const [timer, setTimer] = useState("00:10:00");
   const [activeQuestion, setActiveQuestion] = useState(0);
@@ -288,4 +288,4 @@ export const Quiz = ({ questionAndAnswers }: { questionAndAnswers: QuestionData[
       )}
     </>
   );
-};
+});

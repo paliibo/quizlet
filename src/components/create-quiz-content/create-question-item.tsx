@@ -1,10 +1,10 @@
 import { FormButton, FormInput, FormToggle } from "@/components/ui/form";
 import { QuestionContentProps } from "@/types/types";
-import { FC } from "react";
+import { FC, memo } from "react";
 
 import { ToggleItem } from "../ui/toggle";
 
-export const CreateQuestionContent: FC<QuestionContentProps> = ({ control, field, fieldIndex, type, update }) => {
+export const CreateQuestionContent: FC<QuestionContentProps> = memo(({ control, field, fieldIndex, type, update }) => {
   if (type === "multi") {
     if (!field || !field.options) return;
 
@@ -142,4 +142,4 @@ export const CreateQuestionContent: FC<QuestionContentProps> = ({ control, field
       </FormToggle>
     </div>
   );
-};
+});

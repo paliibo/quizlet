@@ -1,13 +1,13 @@
 import { Slot } from "@radix-ui/react-slot";
-import { ButtonHTMLAttributes, forwardRef } from "react";
+import { ButtonHTMLAttributes, forwardRef, memo } from "react";
 import { twMerge } from "tailwind-merge";
 
 export type ButtonProps = {
   asChild?: boolean;
   onAction?: () => void;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ asChild = false, className, onAction, ...props }, ref) => {
+export const Button = memo(
+  forwardRef<HTMLButtonElement, ButtonProps>(({ asChild = false, className, onAction, ...props }, ref) => {
     const Component = asChild ? Slot : "button";
 
     return (
@@ -22,6 +22,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         />
       </div>
     );
-  },
+  }),
 );
 Button.displayName = "Button";

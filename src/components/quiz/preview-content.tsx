@@ -1,6 +1,6 @@
 import { QuestionContentProps } from "@/types/types";
 import { CheckIcon, PersonIcon } from "@radix-ui/react-icons";
-import { FC } from "react";
+import { FC, memo } from "react";
 
 export const PreviewContent: FC<
   {
@@ -8,7 +8,7 @@ export const PreviewContent: FC<
       answers: string[];
     };
   } & Omit<QuestionContentProps, "control" | "type" | "update">
-> = ({ field, fieldIndex, result }) => {
+> = memo(({ field, fieldIndex, result }) => {
   if (field.type === "text") {
     return (
       <div className={"flex h-full w-full shrink flex-col gap-2 p-2"}>
@@ -162,4 +162,4 @@ export const PreviewContent: FC<
       })}
     </div>
   );
-};
+});

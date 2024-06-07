@@ -2,9 +2,9 @@
 import { FormInput, FormToggle } from "@/components/ui/form";
 import { ToggleItem } from "@/components/ui/toggle";
 import { QuestionContentProps } from "@/types/types";
-import { FC } from "react";
+import { FC, memo } from "react";
 
-export const QuizContent: FC<Omit<QuestionContentProps, "type" | "update">> = ({ control, field, fieldIndex }) => {
+export const QuizContent: FC<Omit<QuestionContentProps, "type" | "update">> = memo(({ control, field, fieldIndex }) => {
   if (field.type === "multi") {
     if (!field || !field.options) return;
 
@@ -62,4 +62,4 @@ export const QuizContent: FC<Omit<QuestionContentProps, "type" | "update">> = ({
       </FormToggle>
     </div>
   );
-};
+});
