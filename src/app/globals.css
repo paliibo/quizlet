@@ -2,6 +2,158 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    background-color: #e5f1fc;
+@layer base {
+  :root {
+    --radius: 14px;
+
+    --background: 220 40% 98%;
+    --foreground: 224 32% 12%;
+
+    --surface: 0 0% 100%;
+    --surface-foreground: 224 32% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 32% 12%;
+
+    --muted: 220 24% 94%;
+    --muted-foreground: 222 12% 44%;
+
+    --primary: 258 88% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --accent: 190 92% 42%;
+    --accent-foreground: 0 0% 100%;
+
+    --success: 152 62% 38%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 94% 48%;
+    --warning-foreground: 30 60% 12%;
+
+    --danger: 352 78% 55%;
+    --danger-foreground: 0 0% 100%;
+
+    --border: 222 20% 88%;
+    --input: 222 20% 88%;
+    --ring: 258 88% 60%;
+    --shadow: 224 40% 20%;
+  }
+
+  .dark {
+    --background: 232 30% 8%;
+    --foreground: 220 26% 94%;
+
+    --surface: 231 26% 12%;
+    --surface-foreground: 220 26% 94%;
+
+    --card: 231 26% 12%;
+    --card-foreground: 220 26% 94%;
+
+    --muted: 231 20% 18%;
+    --muted-foreground: 222 14% 66%;
+
+    --primary: 258 92% 70%;
+    --primary-foreground: 258 60% 10%;
+
+    --accent: 187 92% 54%;
+    --accent-foreground: 190 80% 8%;
+
+    --success: 152 62% 50%;
+    --success-foreground: 152 60% 8%;
+
+    --warning: 40 94% 60%;
+    --warning-foreground: 30 60% 10%;
+
+    --danger: 352 84% 66%;
+    --danger-foreground: 352 60% 10%;
+
+    --border: 230 18% 24%;
+    --input: 230 18% 24%;
+    --ring: 258 92% 70%;
+    --shadow: 232 60% 2%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-primary/25;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@layer components {
+  /* Soft aurora wash used behind the app shell. */
+  .aurora {
+    background:
+      radial-gradient(60rem 40rem at 12% -10%, hsl(var(--primary) / 0.18), transparent 60%),
+      radial-gradient(45rem 35rem at 88% 0%, hsl(var(--accent) / 0.16), transparent 60%),
+      radial-gradient(50rem 40rem at 50% 110%, hsl(var(--primary) / 0.1), transparent 60%);
+  }
+
+  .glass {
+    @apply border border-border/70 bg-surface/70 backdrop-blur-xl;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-br from-primary via-primary to-accent bg-clip-text text-transparent;
+  }
+
+  .skeleton {
+    @apply rounded-md bg-muted;
+    background-image: linear-gradient(90deg, transparent, hsl(var(--foreground) / 0.06), transparent);
+    background-size: 200% 100%;
+    @apply animate-shimmer;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
