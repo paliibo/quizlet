@@ -41,17 +41,26 @@ export const similarity = (a: string, b: string): number => {
 };
 
 /**
- * Whether a typed answer should count. Exact after normalization always wins;
- * otherwise we forgive a single typo in longer answers so "mitochondria" is not
- * marked wrong for "mitochondia".
+ * Whether a typed answer should count.
+ *
+ * Exact after normalization always wins. Beyond that we allow a budget of edits
+ * that grows with the length of the expected answer, so "mitochondrion" tolerates
+ * a slip while "cat" and "car" stay distinct.
  */
-export const isCloseEnough = (given: string, expected: string, tolerance = 0.86): boolean => {
+export const typoBudget = (length: number): number => {
+  if (length <= 4) return 0;
+  if (length <= 9) return 1;
+  if (length <= 15) return 2;
+
+  return 3;
+};
+
+export const isCloseEnough = (given: string, expected: string): boolean => {
   const a = normalize(given);
   const b = normalize(expected);
 
   if (!a || !b) return false;
   if (a === b) return true;
-  if (b.length <= 4) return false;
 
-  return similarity(a, b) >= tolerance;
+  return levenshtein(a, b) <= typoBudget(b.length);
 };
