@@ -22,6 +22,12 @@ const legacyQuizSchema = z.object({
 
 export const legacyStateSchema = z.array(legacyQuizSchema);
 
+/** The minimum evidence that a payload came from a previous Quizbrain save. */
+const persistedShape = z.object({
+  decks: z.array(z.unknown()),
+  version: z.number(),
+});
+
 const ACCENTS: Accent[] = ["violet", "cyan", "emerald", "amber", "rose", "indigo"];
 const EMOJIS = ["🧠", "📚", "🧪", "🌍", "🎯", "🧩"];
 
@@ -70,8 +76,12 @@ export const migrate = (raw: unknown): AppState | null => {
     });
   }
 
-  const current = appStateSchema.safeParse(raw);
-  if (current.success) {
+  // `appStateSchema` defaults every field, so it would happily turn arbitrary
+  // objects into an empty library. Require the two fields a real payload always
+  // carries before we accept it as ours.
+  const looksPersisted = persistedShape.safeParse(raw).success;
+  const current = looksPersisted ? appStateSchema.safeParse(raw) : null;
+  if (current?.success) {
     return { ...current.data, version: SCHEMA_VERSION };
   }
 
