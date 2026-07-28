@@ -10,7 +10,7 @@ export const Tooltip = ({ children, label }: { children: ReactNode; label: strin
     <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
     <TooltipPrimitive.Portal>
       <TooltipPrimitive.Content
-        className="z-50 rounded-md border border-border bg-surface px-2.5 py-1.5 text-xs shadow-raised animate-fade-in"
+        className="z-50 animate-fade-in rounded-md border border-border bg-surface px-2.5 py-1.5 text-xs shadow-raised"
         sideOffset={6}
       >
         {label}

@@ -44,11 +44,46 @@ export const CommandMenu = ({ onOpenChange, open }: { onOpenChange: (open: boole
     };
 
     return [
-      { group: "Actions", icon: <PlusIcon />, id: "new", keywords: "create deck add", label: "Create a new deck", run: go(routes.newDeck) },
-      { group: "Actions", icon: <StackIcon />, id: "library", keywords: "home decks", label: "Go to library", run: go(routes.home) },
-      { group: "Actions", icon: <BarChartIcon />, id: "stats", keywords: "progress analytics", label: "Open stats", run: go(routes.stats) },
-      { group: "Actions", icon: <StarIcon />, id: "achievements", keywords: "badges trophies", label: "Open achievements", run: go(routes.achievements) },
-      { group: "Actions", icon: <GearIcon />, id: "settings", keywords: "preferences data export", label: "Open settings", run: go(routes.settings) },
+      {
+        group: "Actions",
+        icon: <PlusIcon />,
+        id: "new",
+        keywords: "create deck add",
+        label: "Create a new deck",
+        run: go(routes.newDeck),
+      },
+      {
+        group: "Actions",
+        icon: <StackIcon />,
+        id: "library",
+        keywords: "home decks",
+        label: "Go to library",
+        run: go(routes.home),
+      },
+      {
+        group: "Actions",
+        icon: <BarChartIcon />,
+        id: "stats",
+        keywords: "progress analytics",
+        label: "Open stats",
+        run: go(routes.stats),
+      },
+      {
+        group: "Actions",
+        icon: <StarIcon />,
+        id: "achievements",
+        keywords: "badges trophies",
+        label: "Open achievements",
+        run: go(routes.achievements),
+      },
+      {
+        group: "Actions",
+        icon: <GearIcon />,
+        id: "settings",
+        keywords: "preferences data export",
+        label: "Open settings",
+        run: go(routes.settings),
+      },
       {
         group: "Actions",
         icon: resolved === "dark" ? <SunIcon /> : <MoonIcon />,

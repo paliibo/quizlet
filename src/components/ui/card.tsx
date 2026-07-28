@@ -12,7 +12,7 @@ export const Surface = forwardRef<HTMLDivElement, SurfaceProps>(({ className, in
     className={cn(
       "rounded-xl border border-border bg-card text-card-foreground shadow-raised",
       interactive &&
-        "transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-glow focus-within:border-primary/40",
+        "transition-all duration-300 focus-within:border-primary/40 hover:-translate-y-1 hover:border-primary/40 hover:shadow-glow",
       className,
     )}
     ref={ref}

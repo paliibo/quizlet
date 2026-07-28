@@ -24,7 +24,10 @@ const toBase64Url = (value: string): string => {
 };
 
 const fromBase64Url = (value: string): string => {
-  const padded = value.replace(/-/g, "+").replace(/_/g, "/").padEnd(Math.ceil(value.length / 4) * 4, "=");
+  const padded = value
+    .replace(/-/g, "+")
+    .replace(/_/g, "/")
+    .padEnd(Math.ceil(value.length / 4) * 4, "=");
   const binary = atob(padded);
   const bytes = Uint8Array.from(binary, character => character.charCodeAt(0));
 

@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-
 import { Inter, JetBrains_Mono, Outfit } from "next/font/google";
 
 import { AppShell } from "@/components/shared/app-shell";

@@ -1,15 +1,14 @@
-import type { Attempt, Deck, Review } from "./schema";
-
 import { dayKey } from "./format";
+import type { Attempt, Deck, Review } from "./schema";
 import { masteryOf } from "./srs";
 
 export type DeckStats = {
   attempts: number;
+  averageAccuracy: number;
   bestAccuracy: number;
   dueCount: number;
   lastAttemptAt: null | number;
   mastery: number;
-  averageAccuracy: number;
 };
 
 const accuracyOf = (attempt: Attempt): number => (attempt.maxScore === 0 ? 0 : attempt.score / attempt.maxScore);
@@ -21,9 +20,7 @@ export const deckStats = (deck: Deck, attempts: Attempt[], reviews: Review[], no
 
   return {
     attempts: mine.length,
-    averageAccuracy: accuracies.length
-      ? accuracies.reduce((total, value) => total + value, 0) / accuracies.length
-      : 0,
+    averageAccuracy: accuracies.length ? accuracies.reduce((total, value) => total + value, 0) / accuracies.length : 0,
     bestAccuracy: accuracies.length ? Math.max(...accuracies) : 0,
     dueCount: deck.cards.filter(card => {
       const review = deckReviews.find(item => item.cardId === card.id);

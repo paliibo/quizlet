@@ -1,7 +1,7 @@
 import { createId } from "@/lib/id";
 import { type Attempt, type Deck, type Review, type StudyMode, deckSchema } from "@/lib/schema";
-import { type Grade, createReview, scheduleReview } from "@/lib/srs";
 import { seedDecks } from "@/lib/seed";
+import { type Grade, createReview, scheduleReview } from "@/lib/srs";
 import { clearState, emptyState } from "@/lib/storage";
 
 import { getState, setState } from "./store";

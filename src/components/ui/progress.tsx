@@ -44,7 +44,10 @@ export const Ring = ({ className, label, size = 56, strokeWidth = 5, value }: Ri
   const offset = circumference * (1 - clamp(value, 0, 1));
 
   return (
-    <div className={cn("relative inline-flex items-center justify-center", className)} style={{ height: size, width: size }}>
+    <div
+      className={cn("relative inline-flex items-center justify-center", className)}
+      style={{ height: size, width: size }}
+    >
       <svg aria-hidden height={size} viewBox={`0 0 ${size} ${size}`} width={size}>
         <circle
           className="text-muted"

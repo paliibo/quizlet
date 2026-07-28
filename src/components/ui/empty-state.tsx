@@ -17,7 +17,11 @@ export const EmptyState = ({ action, className, description, icon, title }: Empt
       className,
     )}
   >
-    {icon ? <div className="text-4xl" aria-hidden>{icon}</div> : null}
+    {icon ? (
+      <div aria-hidden className="text-4xl">
+        {icon}
+      </div>
+    ) : null}
     <h3 className="text-lg font-semibold">{title}</h3>
     <p className="max-w-sm text-sm text-muted-foreground">{description}</p>
     {action ? <div className="mt-2">{action}</div> : null}

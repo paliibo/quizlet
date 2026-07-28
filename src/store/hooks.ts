@@ -4,7 +4,6 @@ import { useCallback, useEffect, useRef, useSyncExternalStore } from "react";
 
 import type { Attempt, Deck, Review, Settings } from "@/lib/schema";
 import type { AppState } from "@/lib/schema";
-
 import { deckStats, globalStats } from "@/lib/stats";
 
 import { initialState } from "./actions";

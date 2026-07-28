@@ -1,5 +1,4 @@
 import type { Attempt, Deck, Review } from "./schema";
-
 import { currentStreak } from "./stats";
 
 export type Achievement = {

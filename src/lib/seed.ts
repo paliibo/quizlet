@@ -41,9 +41,6 @@ const deck = (input: {
 export const seedDecks = (): Deck[] => [
   deck({
     accent: "cyan",
-    description: "Match countries to their capital cities.",
-    emoji: "🌍",
-    title: "World Capitals",
     cards: [
       {
         answers: ["Canberra"],
@@ -83,12 +80,12 @@ export const seedDecks = (): Deck[] => [
         prompt: "Which Swiss city hosts the federal government?",
       },
     ],
+    description: "Match countries to their capital cities.",
+    emoji: "🌍",
+    title: "World Capitals",
   }),
   deck({
     accent: "amber",
-    description: "Types, scope and the quirks that show up in every interview.",
-    emoji: "⚡",
-    title: "JavaScript Fundamentals",
     cards: [
       {
         answers: ["object"],
@@ -138,12 +135,12 @@ export const seedDecks = (): Deck[] => [
         prompt: "What does an arrow function use for `this`?",
       },
     ],
+    description: "Types, scope and the quirks that show up in every interview.",
+    emoji: "⚡",
+    title: "JavaScript Fundamentals",
   }),
   deck({
     accent: "emerald",
-    description: "Cells, systems and the vocabulary that connects them.",
-    emoji: "🧬",
-    title: "Human Biology",
     cards: [
       {
         answers: ["Mitochondrion"],
@@ -177,12 +174,12 @@ export const seedDecks = (): Deck[] => [
         prompt: "What is the basic signalling cell of the nervous system?",
       },
     ],
+    description: "Cells, systems and the vocabulary that connects them.",
+    emoji: "🧬",
+    title: "Human Biology",
   }),
   deck({
     accent: "indigo",
-    description: "Planets, distances and the physics that holds it together.",
-    emoji: "🪐",
-    title: "Space & Astronomy",
     cards: [
       {
         answers: ["Jupiter"],
@@ -215,5 +212,8 @@ export const seedDecks = (): Deck[] => [
         prompt: "How long does sunlight take to reach Earth?",
       },
     ],
+    description: "Planets, distances and the physics that holds it together.",
+    emoji: "🪐",
+    title: "Space & Astronomy",
   }),
 ];

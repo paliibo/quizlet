@@ -30,7 +30,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [resolved, setResolved] = useState<"dark" | "light">("light");
 
   useEffect(() => {
-    const stored = window.localStorage.getItem(THEME_STORAGE_KEY) as null | ThemePreference;
+    const stored = window.localStorage.getItem(THEME_STORAGE_KEY) as ThemePreference | null;
     const initial = stored ?? "system";
 
     setThemeState(initial);

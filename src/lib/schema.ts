@@ -57,6 +57,8 @@ export const attemptSchema = z.object({
 export const reviewSchema = z.object({
   cardId: z.string(),
   deckId: z.string(),
+  /** Epoch ms at which the card becomes due. */
+  due: z.number().default(() => Date.now()),
   /** SM-2 easiness factor. */
   ease: z.number().default(2.5),
   /** Days until the next review. */
@@ -65,8 +67,6 @@ export const reviewSchema = z.object({
   lastReviewedAt: z.number().default(0),
   repetitions: z.number().int().default(0),
   reviewedCount: z.number().int().default(0),
-  /** Epoch ms at which the card becomes due. */
-  due: z.number().default(() => Date.now()),
 });
 
 export const settingsSchema = z.object({

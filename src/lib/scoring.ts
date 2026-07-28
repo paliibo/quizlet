@@ -1,5 +1,4 @@
 import type { Card, Deck, Response } from "./schema";
-
 import { isCloseEnough, normalize } from "./text";
 
 export type GradedAnswer = {

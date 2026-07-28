@@ -1,9 +1,8 @@
 import { describe, expect, it } from "vitest";
 
 import type { Card, Deck } from "./schema";
-
-import { gradeCard, gradeDeck } from "./scoring";
 import { cardSchema, deckSchema } from "./schema";
+import { gradeCard, gradeDeck } from "./scoring";
 
 const card = (overrides: Partial<Card> & Pick<Card, "id">): Card => cardSchema.parse({ points: 10, ...overrides });
 

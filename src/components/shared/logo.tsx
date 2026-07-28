@@ -9,7 +9,12 @@ export const Logo = ({ className }: { className?: string }) => (
           fill="currentColor"
           opacity="0.9"
         />
-        <path d="M9.2 9.6a2.9 2.9 0 1 1 4 2.7v1.2" stroke="hsl(var(--primary))" strokeLinecap="round" strokeWidth="1.8" />
+        <path
+          d="M9.2 9.6a2.9 2.9 0 1 1 4 2.7v1.2"
+          stroke="hsl(var(--primary))"
+          strokeLinecap="round"
+          strokeWidth="1.8"
+        />
         <circle cx="13.2" cy="16.1" fill="hsl(var(--primary))" r="0.95" />
       </svg>
     </span>

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { decodeDeck, encodeDeck, shareUrl } from "./share";
 import { deckSchema } from "./schema";
+import { decodeDeck, encodeDeck, shareUrl } from "./share";
 
 const deck = deckSchema.parse({
   accent: "cyan",

@@ -18,7 +18,11 @@ export type HotkeyOptions = {
  * Bind a keyboard shortcut such as `mod+k`, `shift+?` or plain `Escape`.
  * `mod` maps to ⌘ on Apple platforms and Ctrl elsewhere.
  */
-export const useHotkey = (combo: string, handler: (event: KeyboardEvent) => void, options: HotkeyOptions = {}): void => {
+export const useHotkey = (
+  combo: string,
+  handler: (event: KeyboardEvent) => void,
+  options: HotkeyOptions = {},
+): void => {
   const { allowInInputs = false, enabled = true } = options;
   const handlerRef = useRef(handler);
   handlerRef.current = handler;

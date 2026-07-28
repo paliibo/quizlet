@@ -1,5 +1,5 @@
 import { createId } from "./id";
-import { type Card, type Deck, type CardType, deckSchema } from "./schema";
+import { type Card, type CardType, type Deck, deckSchema } from "./schema";
 
 const COLUMNS = ["type", "prompt", "options", "answers", "points", "hint", "explanation"] as const;
 

@@ -70,7 +70,7 @@ export const sortByUrgency = (reviews: Review[], now = Date.now()): Review[] =>
     const bDue = isDue(b, now);
 
     if (aDue !== bDue) return aDue ? -1 : 1;
-    if (a.reviewedCount === 0 !== (b.reviewedCount === 0)) return a.reviewedCount === 0 ? -1 : 1;
+    if ((a.reviewedCount === 0) !== (b.reviewedCount === 0)) return a.reviewedCount === 0 ? -1 : 1;
 
     return a.due - b.due;
   });

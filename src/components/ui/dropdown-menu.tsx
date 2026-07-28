@@ -16,7 +16,7 @@ export const DropdownMenuContent = forwardRef<
     <DropdownPrimitive.Content
       className={cn(
         "z-50 min-w-44 overflow-hidden rounded-lg border border-border bg-surface p-1 shadow-raised",
-        "data-[state=closed]:animate-out data-[state=open]:animate-in data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
+        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
         className,
       )}
       ref={ref}
@@ -46,7 +46,10 @@ DropdownMenuItem.displayName = "DropdownMenuItem";
 
 export const DropdownMenuSeparator = () => <DropdownPrimitive.Separator className="my-1 h-px bg-border" />;
 
-export const DropdownMenuLabel = ({ className, ...props }: ComponentPropsWithoutRef<typeof DropdownPrimitive.Label>) => (
+export const DropdownMenuLabel = ({
+  className,
+  ...props
+}: ComponentPropsWithoutRef<typeof DropdownPrimitive.Label>) => (
   <DropdownPrimitive.Label
     className={cn("px-2.5 py-1.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground", className)}
     {...props}

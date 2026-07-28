@@ -70,7 +70,10 @@ export const SiteHeader = ({ onOpenCommandMenu }: { onOpenCommandMenu: () => voi
         </div>
       </div>
 
-      <nav aria-label="Main (compact)" className="flex items-center gap-1 border-t border-border/70 px-4 py-2 md:hidden">
+      <nav
+        aria-label="Main (compact)"
+        className="flex items-center gap-1 border-t border-border/70 px-4 py-2 md:hidden"
+      >
         {links.map(({ href, icon: Icon, label }) => {
           const active = href === routes.home ? pathname === href : pathname.startsWith(href);
 
