@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import { migrate, migrateLegacyQuiz } from "./migrate";
+import { type LegacyQuiz, migrate, migrateLegacyQuiz } from "./migrate";
 import { SCHEMA_VERSION } from "./schema";
 
-const legacyQuiz = {
+const legacyQuiz: LegacyQuiz = {
   questions: [
     { answer: ["Default 1"], options: ["Default 1", "Default 2"], points: 1, title: "Default Question", type: "regular" },
     { answer: "Paris", options: [], points: 3, title: "Capital of France?", type: "text" },

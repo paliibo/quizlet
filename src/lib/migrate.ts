@@ -22,6 +22,8 @@ const legacyQuizSchema = z.object({
 
 export const legacyStateSchema = z.array(legacyQuizSchema);
 
+export type LegacyQuiz = z.infer<typeof legacyQuizSchema>;
+
 /** The minimum evidence that a payload came from a previous Quizbrain save. */
 const persistedShape = z.object({
   decks: z.array(z.unknown()),
@@ -46,7 +48,7 @@ const migrateQuestion = (question: z.infer<typeof legacyQuestionSchema>): Card =
 });
 
 /** Convert one legacy quiz into a v2 deck. */
-export const migrateLegacyQuiz = (quiz: z.infer<typeof legacyQuizSchema>, index = 0): Deck => {
+export const migrateLegacyQuiz = (quiz: LegacyQuiz, index = 0): Deck => {
   const now = Date.now();
 
   return {
