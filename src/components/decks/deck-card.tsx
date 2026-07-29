@@ -3,10 +3,8 @@
 import { DotsHorizontalIcon, LightningBoltIcon, Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 
-import type { Deck } from "@/lib/schema";
-import type { DeckStats } from "@/lib/stats";
-
 import { Badge } from "@/components/ui/badge";
+import { Surface } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,9 +13,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Ring } from "@/components/ui/progress";
-import { Surface } from "@/components/ui/card";
 import { formatPercent, formatRelativeTime, pluralize } from "@/lib/format";
 import { routes } from "@/lib/routes";
+import type { Deck } from "@/lib/schema";
+import type { DeckStats } from "@/lib/stats";
 
 import { DeckCover } from "./deck-cover";
 
@@ -40,9 +39,7 @@ export const DeckCard = ({ deck, onDelete, onDuplicate, onShare, stats }: DeckCa
           <span aria-hidden className="absolute inset-0 rounded-xl" />
           <h3 className="truncate pr-8 font-semibold leading-tight">{deck.title}</h3>
         </Link>
-        <p className="mt-0.5 line-clamp-2 text-sm text-muted-foreground">
-          {deck.description || "No description yet."}
-        </p>
+        <p className="mt-0.5 line-clamp-2 text-sm text-muted-foreground">{deck.description || "No description yet."}</p>
       </div>
 
       <div className="relative z-10">

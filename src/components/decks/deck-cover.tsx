@@ -1,7 +1,6 @@
-import type { Accent } from "@/lib/schema";
-
 import { accentStyles } from "@/lib/accents";
 import { cn } from "@/lib/cn";
+import type { Accent } from "@/lib/schema";
 
 export type DeckCoverProps = {
   accent: Accent;
