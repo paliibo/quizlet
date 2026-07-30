@@ -3,11 +3,10 @@
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 
-import type { Card } from "@/lib/schema";
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Surface } from "@/components/ui/card";
+import type { Card } from "@/lib/schema";
 
 const typeLabels: Record<Card["type"], string> = {
   multi: "Multi select",
