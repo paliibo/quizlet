@@ -30,6 +30,12 @@ const config: Config = {
         background: "hsl(var(--background))",
         border: "hsl(var(--border))",
         card: { DEFAULT: "hsl(var(--card))", foreground: "hsl(var(--card-foreground))" },
+        chart: {
+          correct: "hsl(var(--chart-correct))",
+          grid: "hsl(var(--chart-grid))",
+          series: "hsl(var(--chart-series))",
+          wrong: "hsl(var(--chart-wrong))",
+        },
         danger: { DEFAULT: "hsl(var(--danger))", foreground: "hsl(var(--danger-foreground))" },
         foreground: "hsl(var(--foreground))",
         input: "hsl(var(--input))",

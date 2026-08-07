@@ -37,6 +37,14 @@
     --input: 222 20% 88%;
     --ring: 258 88% 60%;
     --shadow: 224 40% 20%;
+
+    /* Chart marks are chosen per surface rather than reused from the UI status
+       tokens: these steps are validated for colour-vision separation and
+       contrast against this mode's chart surface. */
+    --chart-correct: 162 64% 40%;
+    --chart-wrong: 350 74% 48%;
+    --chart-series: 258 88% 60%;
+    --chart-grid: 222 20% 88%;
   }
 
   .dark {
@@ -71,6 +79,11 @@
     --input: 230 18% 24%;
     --ring: 258 92% 70%;
     --shadow: 232 60% 2%;
+
+    --chart-correct: 158 58% 42%;
+    --chart-wrong: 350 72% 50%;
+    --chart-series: 258 92% 70%;
+    --chart-grid: 230 18% 24%;
   }
 
   * {
