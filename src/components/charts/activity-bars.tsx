@@ -2,9 +2,8 @@
 
 import { useId, useState } from "react";
 
-import type { ActivityPoint } from "@/lib/stats";
-
 import { cn } from "@/lib/cn";
+import type { ActivityPoint } from "@/lib/stats";
 
 export type ActivityBarsProps = {
   className?: string;

@@ -3,9 +3,6 @@
 import { CheckCircledIcon, CrossCircledIcon, HomeIcon, ReloadIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 
-import type { QuizSummary } from "@/lib/scoring";
-import type { Deck } from "@/lib/schema";
-
 import { ScoreBreakdown } from "@/components/charts/score-breakdown";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -13,6 +10,8 @@ import { Surface } from "@/components/ui/card";
 import { cn } from "@/lib/cn";
 import { formatDuration, formatPercent } from "@/lib/format";
 import { routes } from "@/lib/routes";
+import type { Deck } from "@/lib/schema";
+import type { QuizSummary } from "@/lib/scoring";
 
 export type QuizResultsProps = {
   deck: Deck;
@@ -33,15 +32,15 @@ export const QuizResults = ({ deck, durationMs, onRetry, summary }: QuizResultsP
   const { message, tone } = verdict(summary.accuracy);
 
   return (
-    <div className="flex flex-col gap-6 animate-slide-up">
+    <div className="flex animate-slide-up flex-col gap-6">
       <Surface className="p-6 sm:p-8">
         <p className="text-sm font-medium uppercase tracking-wide text-muted-foreground">Your score</p>
 
         <div className="mt-1 flex flex-wrap items-end gap-x-4 gap-y-2">
-          <p className="font-display text-6xl font-semibold leading-none tabular-nums text-gradient">
+          <p className="text-gradient font-display text-6xl font-semibold tabular-nums leading-none">
             {formatPercent(summary.accuracy)}
           </p>
-          <p className="text-lg text-muted-foreground tabular-nums">
+          <p className="text-lg tabular-nums text-muted-foreground">
             {summary.score} / {summary.maxScore} points
           </p>
           <Badge tone={tone}>{message}</Badge>
@@ -65,7 +64,7 @@ export const QuizResults = ({ deck, durationMs, onRetry, summary }: QuizResultsP
               Back to deck
             </Link>
           </Button>
-          <span className="ml-auto text-sm text-muted-foreground tabular-nums">
+          <span className="ml-auto text-sm tabular-nums text-muted-foreground">
             Finished in {formatDuration(durationMs)}
           </span>
         </div>

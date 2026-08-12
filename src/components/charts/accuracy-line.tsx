@@ -2,10 +2,9 @@
 
 import { useId, useMemo, useState } from "react";
 
-import type { ActivityPoint } from "@/lib/stats";
-
 import { cn } from "@/lib/cn";
 import { formatPercent } from "@/lib/format";
+import type { ActivityPoint } from "@/lib/stats";
 
 export type AccuracyLineProps = {
   className?: string;

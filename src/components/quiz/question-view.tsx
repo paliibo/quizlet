@@ -3,11 +3,10 @@
 import { QuestionMarkCircledIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 
-import type { Card } from "@/lib/schema";
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { TextInput } from "@/components/ui/field";
+import type { Card } from "@/lib/schema";
 
 import { OptionRow } from "./option-row";
 
