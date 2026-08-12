@@ -16,6 +16,11 @@ describe("formatDuration", () => {
   it("floors negative input at zero", () => {
     expect(formatDuration(-5_000)).toBe("0:00");
   });
+
+  it("renders a dash for a countdown with no limit", () => {
+    expect(formatDuration(Number.POSITIVE_INFINITY)).toBe("—");
+    expect(formatDuration(Number.NaN)).toBe("—");
+  });
 });
 
 describe("formatPercent", () => {

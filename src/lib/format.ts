@@ -1,5 +1,10 @@
-/** Format a millisecond duration as `m:ss`, or `h:mm:ss` past an hour. */
+/**
+ * Format a millisecond duration as `m:ss`, or `h:mm:ss` past an hour. Non-finite
+ * input (an unlimited countdown) renders as a dash rather than `NaN`.
+ */
 export const formatDuration = (ms: number): string => {
+  if (!Number.isFinite(ms)) return "—";
+
   const totalSeconds = Math.max(0, Math.round(ms / 1000));
   const hours = Math.floor(totalSeconds / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);

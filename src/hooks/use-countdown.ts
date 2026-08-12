@@ -54,5 +54,15 @@ export const useCountdown = (seconds: number, onExpire?: () => void): Countdown 
 
   const stop = useCallback(() => setRunning(false), []);
 
+  // The limit arrives with the deck, one render after mount. Restart the clock
+  // when it changes rather than staying stuck on the initial (unlimited) value.
+  const previousSeconds = useRef(seconds);
+  useEffect(() => {
+    if (previousSeconds.current === seconds) return;
+
+    previousSeconds.current = seconds;
+    reset();
+  }, [reset, seconds]);
+
   return { remaining, reset, running, stop };
 };
