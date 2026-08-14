@@ -8,6 +8,13 @@ const isTypingTarget = (target: EventTarget | null): boolean => {
   return target.isContentEditable || ["INPUT", "SELECT", "TEXTAREA"].includes(target.tagName);
 };
 
+/** Friendly combo names mapped onto the values `KeyboardEvent.key` reports. */
+const KEY_ALIASES: Record<string, string> = {
+  esc: "escape",
+  space: " ",
+  spacebar: " ",
+};
+
 export type HotkeyOptions = {
   /** Fire even while a text field has focus. Off by default. */
   allowInInputs?: boolean;
@@ -31,7 +38,8 @@ export const useHotkey = (
     if (!enabled) return;
 
     const parts = combo.toLowerCase().split("+");
-    const key = parts[parts.length - 1] ?? "";
+    const raw = parts[parts.length - 1] ?? "";
+    const key = KEY_ALIASES[raw] ?? raw;
     const needsMod = parts.includes("mod");
     const needsShift = parts.includes("shift");
     const needsAlt = parts.includes("alt");
