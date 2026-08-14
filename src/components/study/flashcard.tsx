@@ -1,9 +1,8 @@
 "use client";
 
-import type { Card } from "@/lib/schema";
-
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/cn";
+import type { Card } from "@/lib/schema";
 
 export type FlashcardProps = {
   card: Card;
