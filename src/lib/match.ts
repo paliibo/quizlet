@@ -1,6 +1,5 @@
-import type { Card, Deck } from "./schema";
-
 import { createId } from "./id";
+import type { Card, Deck } from "./schema";
 import { shuffle } from "./shuffle";
 
 export type MatchTile = {
