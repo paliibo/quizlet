@@ -33,10 +33,14 @@ export const Field = ({ children, error, hint, htmlFor, label }: FieldProps) => 
   </div>
 );
 
-export type TextInputProps = { error?: string; label?: string } & InputHTMLAttributes<HTMLInputElement>;
+export type TextInputProps = {
+  error?: string;
+  hint?: string;
+  label?: string;
+} & InputHTMLAttributes<HTMLInputElement>;
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
-  ({ className, error, id, label, ...props }, ref) => {
+  ({ className, error, hint, id, label, ...props }, ref) => {
     const generatedId = useId();
     const inputId = id ?? generatedId;
 
@@ -50,8 +54,8 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       />
     );
 
-    return label || error ? (
-      <Field error={error} htmlFor={inputId} label={label}>
+    return label || error || hint ? (
+      <Field error={error} hint={hint} htmlFor={inputId} label={label}>
         {input}
       </Field>
     ) : (
@@ -61,10 +65,14 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
 );
 TextInput.displayName = "TextInput";
 
-export type TextAreaProps = { error?: string; label?: string } & TextareaHTMLAttributes<HTMLTextAreaElement>;
+export type TextAreaProps = {
+  error?: string;
+  hint?: string;
+  label?: string;
+} & TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
-  ({ className, error, id, label, ...props }, ref) => {
+  ({ className, error, hint, id, label, ...props }, ref) => {
     const generatedId = useId();
     const areaId = id ?? generatedId;
 
@@ -78,8 +86,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       />
     );
 
-    return label || error ? (
-      <Field error={error} htmlFor={areaId} label={label}>
+    return label || error || hint ? (
+      <Field error={error} hint={hint} htmlFor={areaId} label={label}>
         {area}
       </Field>
     ) : (

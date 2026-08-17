@@ -2,10 +2,9 @@
 
 import { CheckIcon } from "@radix-ui/react-icons";
 
-import type { Accent } from "@/lib/schema";
-
 import { accentNames, accentStyles } from "@/lib/accents";
 import { cn } from "@/lib/cn";
+import type { Accent } from "@/lib/schema";
 
 export const AccentPicker = ({ onChange, value }: { onChange: (accent: Accent) => void; value: Accent }) => (
   <div className="flex flex-wrap gap-2" role="radiogroup">

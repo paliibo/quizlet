@@ -2,14 +2,13 @@
 
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon, PlusIcon, TrashIcon } from "@radix-ui/react-icons";
 
-import type { Card, CardType } from "@/lib/schema";
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Surface } from "@/components/ui/card";
 import { Field, TextArea, TextInput } from "@/components/ui/field";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/cn";
+import type { Card, CardType } from "@/lib/schema";
 
 export type CardEditorProps = {
   card: Card;
@@ -147,7 +146,12 @@ export const CardEditor = ({ card, errors, index, onChange, onMove, onRemove, to
             hint="Comma separated"
             label="Also accept"
             onChange={event =>
-              patch({ accepted: event.target.value.split(",").map(value => value.trim()).filter(Boolean) })
+              patch({
+                accepted: event.target.value
+                  .split(",")
+                  .map(value => value.trim())
+                  .filter(Boolean),
+              })
             }
             placeholder="Alternate spellings"
             value={card.accepted.join(", ")}
