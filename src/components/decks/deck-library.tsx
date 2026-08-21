@@ -1,6 +1,13 @@
 "use client";
 
-import { FileTextIcon, LightningBoltIcon, MagnifyingGlassIcon, PlusIcon, TargetIcon } from "@radix-ui/react-icons";
+import {
+  ClockIcon,
+  FileTextIcon,
+  LightningBoltIcon,
+  MagnifyingGlassIcon,
+  PlusIcon,
+  TargetIcon,
+} from "@radix-ui/react-icons";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
@@ -135,7 +142,7 @@ export const DeckLibrary = () => {
         <StatTile icon={<TargetIcon />} label="Accuracy" value={mounted ? formatPercent(summary.accuracy) : "—"} />
         <StatTile
           hint="across all runs"
-          icon={<MagnifyingGlassIcon />}
+          icon={<ClockIcon />}
           label="Time studied"
           value={mounted ? formatDuration(summary.time) : "—"}
         />
