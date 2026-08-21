@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { Container } from "@/components/shared/container";
 import { Button } from "@/components/ui/button";
 
-export default function GlobalError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
+export default function GlobalError({ error, reset }: { error: { digest?: string } & Error; reset: () => void }) {
   useEffect(() => {
     console.error(error);
   }, [error]);
