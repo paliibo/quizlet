@@ -88,12 +88,26 @@ export const AccuracyLine = ({ className, data, height = 160 }: AccuracyLineProp
           vectorEffect="non-scaling-stroke"
         />
 
+        {/* Sparse series get a visible marker per point; a dense one would
+            turn into a smear, so only the hovered point is drawn there. */}
+        {(coords.length <= 12 ? coords : []).map(coord => (
+          <circle
+            cx={coord.x}
+            cy={coord.y}
+            fill="hsl(var(--chart-series))"
+            key={coord.point.day}
+            r="4"
+            stroke="hsl(var(--card))"
+            strokeWidth="2"
+          />
+        ))}
+
         {active ? (
           <circle
             cx={active.x}
             cy={active.y}
             fill="hsl(var(--chart-series))"
-            r="5"
+            r="6"
             stroke="hsl(var(--card))"
             strokeWidth="2"
           />
