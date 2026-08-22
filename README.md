@@ -19,11 +19,11 @@ there is no account, no backend and no telemetry.
 
 ## What it does
 
-| Mode | What it is | Good for |
-| --- | --- | --- |
-| **Quiz** | Every card once, timed, then a scored breakdown with per-card review | Checking where you actually stand |
-| **Flashcards** | Flip and self-grade; an SM-2 scheduler picks the next review date | Long-term retention |
-| **Match** | Race the clock pairing prompts with answers | Warming up, and speed recall |
+| Mode           | What it is                                                           | Good for                          |
+| -------------- | -------------------------------------------------------------------- | --------------------------------- |
+| **Quiz**       | Every card once, timed, then a scored breakdown with per-card review | Checking where you actually stand |
+| **Flashcards** | Flip and self-grade; an SM-2 scheduler picks the next review date    | Long-term retention               |
+| **Match**      | Race the clock pairing prompts with answers                          | Warming up, and speed recall      |
 
 ### Three question types
 
@@ -61,15 +61,15 @@ first time you visit; a library saved by an earlier version of this app is migra
 
 ### Scripts
 
-| Command | What it does |
-| --- | --- |
-| `pnpm dev` | Development server |
-| `pnpm build` | Production build |
-| `pnpm test` | Run the unit tests |
+| Command              | What it does                 |
+| -------------------- | ---------------------------- |
+| `pnpm dev`           | Development server           |
+| `pnpm build`         | Production build             |
+| `pnpm test`          | Run the unit tests           |
 | `pnpm test:coverage` | Tests with a coverage report |
-| `pnpm typecheck` | `tsc --noEmit` |
-| `pnpm lint` | ESLint |
-| `pnpm format` | Prettier |
+| `pnpm typecheck`     | `tsc --noEmit`               |
+| `pnpm lint`          | ESLint                       |
+| `pnpm format`        | Prettier                     |
 
 ## How it is put together
 
