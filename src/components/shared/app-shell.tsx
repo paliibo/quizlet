@@ -6,11 +6,13 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { useHotkey } from "@/hooks/use-hotkey";
 
 import { CommandMenu } from "./command-menu";
+import { ShortcutsDialog } from "./shortcuts-dialog";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 
 export const AppShell = ({ children }: { children: ReactNode }) => {
   const [commandOpen, setCommandOpen] = useState(false);
+  const [shortcutsOpen, setShortcutsOpen] = useState(false);
 
   useHotkey("mod+k", event => {
     event.preventDefault();
@@ -22,6 +24,11 @@ export const AppShell = ({ children }: { children: ReactNode }) => {
     setCommandOpen(true);
   });
 
+  useHotkey("shift+?", event => {
+    event.preventDefault();
+    setShortcutsOpen(current => !current);
+  });
+
   return (
     <TooltipProvider delayDuration={200}>
       <div className="relative flex min-h-screen flex-col">
@@ -30,6 +37,7 @@ export const AppShell = ({ children }: { children: ReactNode }) => {
         <div className="flex-1">{children}</div>
         <SiteFooter />
         <CommandMenu onOpenChange={setCommandOpen} open={commandOpen} />
+        <ShortcutsDialog onOpenChange={setShortcutsOpen} open={shortcutsOpen} />
       </div>
     </TooltipProvider>
   );
