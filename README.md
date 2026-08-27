@@ -15,6 +15,10 @@ there is no account, no backend and no telemetry.
 
 </div>
 
+<p align="center">
+  <img src="docs/screenshots/library-dark.jpg" alt="The Quizbrain library in dark mode" width="880" />
+</p>
+
 ---
 
 ## What it does
@@ -48,6 +52,35 @@ there is no account, no backend and no telemetry.
 - 💾 **Backup & restore** — download the whole library as JSON and load it back on another machine.
 - ♿ **Accessible** — semantic landmarks, a skip link, visible focus rings, `aria-live` regions on
   the charts, and a `prefers-reduced-motion` fallback.
+
+## A look around
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/screenshots/quiz.jpg" alt="A quiz question with numbered options and a countdown" /></td>
+    <td width="50%"><img src="docs/screenshots/results.jpg" alt="The results screen with a score breakdown and per-card review" /></td>
+  </tr>
+  <tr>
+    <td><b>Quiz</b> — numbered options, a countdown and a progress bar.</td>
+    <td><b>Results</b> — hero score, part-to-whole breakdown, card-by-card review.</td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/flashcards.jpg" alt="A flipped flashcard with four recall grades" /></td>
+    <td><img src="docs/screenshots/stats.jpg" alt="The stats dashboard with activity bars and an accuracy trend" /></td>
+  </tr>
+  <tr>
+    <td><b>Flashcards</b> — flip, then grade; each button shows when the card returns.</td>
+    <td><b>Stats</b> — streak, sessions per day and the accuracy trend.</td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/match.jpg" alt="The match game board in light mode" /></td>
+    <td><img src="docs/screenshots/editor.jpg" alt="The deck editor in light mode" /></td>
+  </tr>
+  <tr>
+    <td><b>Match</b> — pair prompts with answers against the clock.</td>
+    <td><b>Editor</b> — build a deck, or import one from CSV.</td>
+  </tr>
+</table>
 
 ## Getting started
 
