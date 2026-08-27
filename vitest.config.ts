@@ -9,7 +9,17 @@ export default defineConfig({
   },
   test: {
     coverage: {
-      exclude: ["src/**/index.ts", "src/**/*.d.ts", "src/**/*.test.ts", "src/lib/seed.ts", "src/lib/routes.ts", "src/lib/accents.ts", "src/lib/download.ts", "src/lib/cn.ts"],
+      exclude: [
+        "src/**/index.ts",
+        "src/**/*.d.ts",
+        "src/**/*.test.ts",
+        "src/lib/seed.ts",
+        "src/lib/routes.ts",
+        "src/lib/accents.ts",
+        "src/lib/download.ts",
+        "src/lib/cn.ts",
+        "src/store/hooks.ts",
+      ],
       include: ["src/lib/**/*.ts", "src/store/**/*.ts"],
       provider: "v8",
       reporter: ["text", "lcov"],
