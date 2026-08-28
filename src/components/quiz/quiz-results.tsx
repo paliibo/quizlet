@@ -4,6 +4,7 @@ import { CheckCircledIcon, CrossCircledIcon, HomeIcon, ReloadIcon } from "@radix
 import Link from "next/link";
 
 import { ScoreBreakdown } from "@/components/charts/score-breakdown";
+import { useCelebrationClass } from "@/components/shared/celebration";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Surface } from "@/components/ui/card";
@@ -30,9 +31,10 @@ const verdict = (accuracy: number): { message: string; tone: "accent" | "primary
 
 export const QuizResults = ({ deck, durationMs, onRetry, summary }: QuizResultsProps) => {
   const { message, tone } = verdict(summary.accuracy);
+  const celebrationClass = useCelebrationClass();
 
   return (
-    <div className="flex animate-slide-up flex-col gap-6">
+    <div className={cn("flex flex-col gap-6", celebrationClass || "animate-slide-up")}>
       <Surface className="p-6 sm:p-8">
         <p className="text-sm font-medium uppercase tracking-wide text-muted-foreground">Your score</p>
 

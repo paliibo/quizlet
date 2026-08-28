@@ -73,7 +73,6 @@ export const settingsSchema = z.object({
   reducedConfetti: z.boolean().default(false),
   shuffleCards: z.boolean().default(true),
   shuffleOptions: z.boolean().default(false),
-  soundEnabled: z.boolean().default(false),
   theme: z.enum(["light", "dark", "system"]).default("system"),
 });
 

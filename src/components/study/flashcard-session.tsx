@@ -5,6 +5,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 
+import { Celebration, useCelebrationClass } from "@/components/shared/celebration";
 import { Container } from "@/components/shared/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -55,6 +56,7 @@ export const FlashcardSession = ({ deckId }: { deckId: string }) => {
   const [position, setPosition] = useState(0);
   const [graded, setGraded] = useState(0);
   const [sessionStart] = useState(() => Date.now());
+  const celebrationClass = useCelebrationClass();
 
   // The queue is fixed when the session starts: grading a card re-schedules it
   // but must not reshuffle the cards still ahead of the learner.
@@ -133,10 +135,8 @@ export const FlashcardSession = ({ deckId }: { deckId: string }) => {
   if (finished) {
     return (
       <Container className="max-w-3xl">
-        <Surface className="animate-pop-in p-8 text-center">
-          <p aria-hidden className="text-5xl">
-            🎉
-          </p>
+        <Surface className={cn("p-8 text-center", celebrationClass)}>
+          <Celebration emoji="🎉" />
           <h1 className="mt-3 font-display text-2xl font-semibold">Session complete</h1>
           <p className="mt-2 text-muted-foreground">
             You graded {graded} card{graded === 1 ? "" : "s"}. Quizbrain has scheduled each one for its next review.

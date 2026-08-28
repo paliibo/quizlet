@@ -5,6 +5,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
+import { Celebration, useCelebrationClass } from "@/components/shared/celebration";
 import { Container } from "@/components/shared/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -33,6 +34,7 @@ export const MatchGame = ({ deckId }: { deckId: string }) => {
   const [elapsed, setElapsed] = useState(0);
   const startedAt = useRef(Date.now());
   const recorded = useRef(false);
+  const celebrationClass = useCelebrationClass();
 
   const board = useMemo(() => (deck ? buildBoard(deck, PAIRS, createRandom(round * 7919)) : []), [deck, round]);
 
@@ -149,10 +151,8 @@ export const MatchGame = ({ deckId }: { deckId: string }) => {
       </div>
 
       {finished ? (
-        <Surface className="mt-6 animate-pop-in p-8 text-center">
-          <p aria-hidden className="text-5xl">
-            ⚡
-          </p>
+        <Surface className={cn("mt-6 p-8 text-center", celebrationClass)}>
+          <Celebration emoji="⚡" />
           <h1 className="mt-3 font-display text-2xl font-semibold">Board cleared</h1>
           <p className="mt-2 text-muted-foreground">
             {pairCount} pairs in {formatDuration(elapsed)} with {mistakes} miss{mistakes === 1 ? "" : "es"}.
