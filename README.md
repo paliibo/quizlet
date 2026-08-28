@@ -80,7 +80,22 @@ there is no account, no backend and no telemetry.
     <td><b>Match</b> — pair prompts with answers against the clock.</td>
     <td><b>Editor</b> — build a deck, or import one from CSV.</td>
   </tr>
+  <tr>
+    <td><img src="docs/screenshots/deck.jpg" alt="A deck overview with mode launcher and mastery stats" /></td>
+    <td><img src="docs/screenshots/achievements.jpg" alt="The achievements grid with progress bars" /></td>
+  </tr>
+  <tr>
+    <td><b>Deck overview</b> — launch any mode, or reveal the answer key.</td>
+    <td><b>Achievements</b> — eight goals, each with visible progress.</td>
+  </tr>
 </table>
+
+Every screen is built from the same token set, so light mode is a real design rather than an inverted
+one:
+
+<p align="center">
+  <img src="docs/screenshots/library-light.jpg" alt="The Quizbrain library in light mode" width="820" />
+</p>
 
 ## Getting started
 
