@@ -1,8 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import type { Attempt, Deck, Review } from "./schema";
-
 import { evaluateAchievements } from "./achievements";
+import type { Attempt, Deck, Review } from "./schema";
 import { attemptSchema, cardSchema, deckSchema } from "./schema";
 import { createReview } from "./srs";
 
